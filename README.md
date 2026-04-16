@@ -8,18 +8,27 @@ timmy.sh
 #  --------
 #  Fast, ten-key-friendly time calculator for hh:mm:ss math.
 #
-#  CORE FEATURES:
-#  --------------
-#  • Accepts:
+#
+#  • Design Philosophy:
+#      Permissive parsing (sexagesimal-style, base-60 behavior)
+#      Example:
+#          1:75:90 → valid → normalized via math
+#
+#
+#  • Accepts Ten-key input:
 #      hh:mm:ss
 #      mm:ss
 #      ss
-#
-#  • Ten-key input:
-#      "." is treated as ":"
+#  •   " . " is treated as " : "
+#      hh.mm.ss
+#      mm.ss
+
 #      Example:
 #          1.02.30  ->  1:02:30
 #          45.15    ->  45:15
+#
+#    All wording and prompts are left close to the left margin intentionally
+#    so you can resize Timmy's window down to a small calculator sized "winlet"
 #
 #  • Operations:
 #      ADD / SUBTRACT
@@ -27,10 +36,6 @@ timmy.sh
 #  • Internals:
 #      Converts all time → total seconds → math → back to hh:mm:ss
 #
-#  • Design Philosophy:
-#      Permissive parsing (sexagesimal-style, base-60 behavior)
-#      Example:
-#          1:75:90 → valid → normalized via math
 #
 #  • House Style:
 #      - Colored prompts
