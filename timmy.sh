@@ -165,7 +165,7 @@ ask_operation() {
     echo -e "${CY}>(q / 0.) Return${NC}" >&2
     echo >&2
 
-    echo -e "${CY}>Choose [1-2]: ${NC}" >&2
+    echo -ne "${CY}>Choose [1-2]: ${NC}" >&2
     read -r choice
 
     is_exit_token "$choice" && return 1
@@ -184,7 +184,7 @@ ask_operation() {
 ask_time_value() {
     local label="$1"
 
-    echo -e "${CY}> ${label} (hh:mm:ss|mm:ss|ss|'.' ok): ${NC}" >&2
+    echo -ne "${CY}> ${label}${NC}  ${YE}(*.* 10key ok): ${NC}" >&2
     read -r val
 
     is_exit_token "$val" && return 1
@@ -204,8 +204,8 @@ run_timmy() {
 
         local t1 t2 s1 s2 result
 
-        t1="$(ask_time_value "Enter FIRST time")" || break
-        t2="$(ask_time_value "Enter SECOND time")" || break
+        t1="$(ask_time_value " FIRST")" || break
+        t2="$(ask_time_value "SECOND")" || break
 
         s1="$(time_to_seconds "$t1")" || continue
         s2="$(time_to_seconds "$t2")" || continue
@@ -218,8 +218,8 @@ run_timmy() {
         echo
         echo -e "${GR}> RESULT: $(seconds_to_time "$result")${NC}"
         echo
-        echo -e "${CY}> Press Enter To Continue...${NC}"
-        read -r _
+        #echo -e "${CY}> Press Enter To Continue...${NC}"
+        #read -r _
     done
 }
 
