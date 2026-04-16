@@ -1,4 +1,4 @@
-![PATTYS-PICTURE-PACKER_Logo](patty.png)
+![Timmys-Time-Table_Logo](timmy.png)
 
 
 timmy.sh
