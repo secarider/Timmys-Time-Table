@@ -2,7 +2,7 @@
 
 
 timmy.sh
-#  "Timmy's Time Table"
+#  Timmy's Time Table
 #
 #  PURPOSE:
 #  --------
