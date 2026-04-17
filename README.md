@@ -19,10 +19,11 @@ timmy.sh
 #                   45.15  =     45:15
 #      hh.mm.ss
 #      mm.ss
+#  • Accepts Normal Input:
 #      hh:mm:ss
 #      mm:ss
 #      ss
-#    All wording and prompts are left close to the left margin intentionally
+#    All wording and prompts are brief, short, and close to the left margin intentionally
 #    so you can resize Timmy's window down to a small calculator sized "winlet"
 #  • Operations:
 #      ADD / SUBTRACT
