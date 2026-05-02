@@ -50,10 +50,20 @@ IFS=$'\n\t'
 # MARKER: COLOR DEFINITIONS
 # ================================================================
 RED="\033[1;31m"
-GR='\033[1;32m'
-YE='\033[1;33m'
-CY='\033[1;36m'
-NC='\033[0m'
+RE=$'\033[1;1;31m'  # Solid Bold Red
+REB=$'\033[5;1;31m'  # Blinking Bold Red # Add '5;' after the bracket for the blinking effect
+GREEN="\033[1;32m"
+GR=$'\033[1;32m'    # Solid Bold Green (All Clear)
+YELLOW="\033[1;33m"
+YE=$'\033[1;1;33m'    # Solid Bold Yellow (Stable Warning)
+YEB=$'\033[5;1;33m'    # Blinking Bold Yellow (Stable Warning)
+CYAN="\033[1;36m"
+CY="\033[1;36m"
+MAGENTA="\033[1;35m"
+WHITE='\033[1;37m'
+BWHITE='\033[1;37m'
+BW=$'\033[1;37m'    # Bright White
+NC="\033[0m"
 
 # ================================================================
 # MARKER: EXIT TOKEN HELPER
@@ -155,18 +165,21 @@ seconds_to_time() {
 # ================================================================
 ask_operation() {
     echo >&2
+    echo -e "${YEB}/\RESULTS-UP-HERE/\ ${NC}" >&2
+    echo -e "${YE}/\/\/\/\/\/\/\/\/\/\ ${NC}" >&2
     echo -e "${CY}====================${NC}" >&2
     echo -e "${CY} TIMMY'S TIME TABLE ${NC}" >&2
     echo -e "${CY}====================${NC}" >&2
     echo >&2
-    echo -e "${YE}>1) Add Time${NC}" >&2
-    echo -e "${YE}>2) Subtract Time${NC}" >&2
+    echo -e "${CY}>${NC}${YE}1) ${NC}${GREEN}Add Time${NC}" >&2
+    echo -e "${CY}>${NC}${YE}2) ${NC}${GREEN}Subtract Time${NC}" >&2
     echo >&2
     echo -e "${CY}>(q / 0.) Return${NC}" >&2
     echo >&2
 
-    echo -ne "${CY}>Choose [1-2]: ${NC}" >&2
+    echo -ne "${CY}>Choose [1-2]: ${NC}${GREEN}" >&2
     read -r choice
+    echo -e "${NC}" >&2
 
     is_exit_token "$choice" && return 1
 
@@ -184,8 +197,9 @@ ask_operation() {
 ask_time_value() {
     local label="$1"
 
-    echo -ne "${CY}> ${label}${NC}  ${YE}(*.* 10key ok): ${NC}" >&2
+    echo -ne "${CY}>${label}${NC}${YE}(-->): ${NC}${GREEN}" >&2
     read -r val
+    echo -e "${NC}" >&2
 
     is_exit_token "$val" && return 1
 
@@ -215,9 +229,8 @@ run_timmy() {
             sub) result=$(( s1 - s2 )) ;;
         esac
 
-        echo
-        echo -e "${GR}> RESULT: $(seconds_to_time "$result")${NC}"
-        echo
+		echo -e "${GR}> RESULT: $(seconds_to_time "$result")${NC}"
+		echo -e "${GR}> SECONDS: $result${NC}"
         #echo -e "${CY}> Press Enter To Continue...${NC}"
         #read -r _
     done
